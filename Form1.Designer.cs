@@ -54,23 +54,20 @@
             fetchedLocalTxt = new TextBox();
             panel1 = new Panel();
             panel2 = new Panel();
-            runwayGroupBox = new GroupBox();
-            rb28 = new RadioButton();
-            rb24 = new RadioButton();
-            rb19 = new RadioButton();
-            rb10 = new RadioButton();
-            rb06 = new RadioButton();
-            rb01 = new RadioButton();
             menuStrip1 = new MenuStrip();
             optionsToolStripMenuItem = new ToolStripMenuItem();
+            airportToolStripMenuItem = new ToolStripMenuItem();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             statusTxt = new ToolStripStatusLabel();
             progBar = new ToolStripProgressBar();
             timeRemainingTxt = new ToolStripStatusLabel();
+            runwayTableLayoutPanel = new TableLayoutPanel();
+            label1 = new Label();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            runwayGroupBox.SuspendLayout();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -293,96 +290,9 @@
             panel2.Size = new Size(174, 70);
             panel2.TabIndex = 27;
             // 
-            // runwayGroupBox
-            // 
-            runwayGroupBox.Controls.Add(rb28);
-            runwayGroupBox.Controls.Add(rb24);
-            runwayGroupBox.Controls.Add(rb19);
-            runwayGroupBox.Controls.Add(rb10);
-            runwayGroupBox.Controls.Add(rb06);
-            runwayGroupBox.Controls.Add(rb01);
-            runwayGroupBox.Location = new Point(458, 27);
-            runwayGroupBox.Name = "runwayGroupBox";
-            runwayGroupBox.Size = new Size(233, 102);
-            runwayGroupBox.TabIndex = 29;
-            runwayGroupBox.TabStop = false;
-            runwayGroupBox.Text = "Select Runway";
-            // 
-            // rb28
-            // 
-            rb28.AutoSize = true;
-            rb28.Location = new Point(123, 72);
-            rb28.Name = "rb28";
-            rb28.Size = new Size(37, 19);
-            rb28.TabIndex = 5;
-            rb28.TabStop = true;
-            rb28.Text = "28";
-            rb28.UseVisualStyleBackColor = true;
-            rb28.CheckedChanged += RunwayRadioButton_CheckedChanged;
-            // 
-            // rb24
-            // 
-            rb24.AutoSize = true;
-            rb24.Location = new Point(123, 47);
-            rb24.Name = "rb24";
-            rb24.Size = new Size(37, 19);
-            rb24.TabIndex = 4;
-            rb24.TabStop = true;
-            rb24.Text = "24";
-            rb24.UseVisualStyleBackColor = true;
-            rb24.CheckedChanged += RunwayRadioButton_CheckedChanged;
-            // 
-            // rb19
-            // 
-            rb19.AutoSize = true;
-            rb19.Location = new Point(123, 22);
-            rb19.Name = "rb19";
-            rb19.Size = new Size(104, 19);
-            rb19.TabIndex = 3;
-            rb19.TabStop = true;
-            rb19.Text = "19 (H: 88 C: 88)";
-            rb19.UseVisualStyleBackColor = true;
-            rb19.CheckedChanged += RunwayRadioButton_CheckedChanged;
-            // 
-            // rb10
-            // 
-            rb10.AutoSize = true;
-            rb10.Location = new Point(6, 72);
-            rb10.Name = "rb10";
-            rb10.Size = new Size(37, 19);
-            rb10.TabIndex = 2;
-            rb10.TabStop = true;
-            rb10.Text = "10";
-            rb10.UseVisualStyleBackColor = true;
-            rb10.CheckedChanged += RunwayRadioButton_CheckedChanged;
-            // 
-            // rb06
-            // 
-            rb06.AutoSize = true;
-            rb06.Location = new Point(6, 47);
-            rb06.Name = "rb06";
-            rb06.Size = new Size(37, 19);
-            rb06.TabIndex = 1;
-            rb06.TabStop = true;
-            rb06.Text = "06";
-            rb06.UseVisualStyleBackColor = true;
-            rb06.CheckedChanged += RunwayRadioButton_CheckedChanged;
-            // 
-            // rb01
-            // 
-            rb01.AutoSize = true;
-            rb01.Location = new Point(6, 22);
-            rb01.Name = "rb01";
-            rb01.Size = new Size(109, 19);
-            rb01.TabIndex = 0;
-            rb01.TabStop = true;
-            rb01.Text = "01 (H: -88 C: 88)";
-            rb01.UseVisualStyleBackColor = true;
-            rb01.CheckedChanged += RunwayRadioButton_CheckedChanged;
-            // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { optionsToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { optionsToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -391,15 +301,22 @@
             // 
             // optionsToolStripMenuItem
             // 
-            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { settingsToolStripMenuItem });
+            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { airportToolStripMenuItem, settingsToolStripMenuItem });
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             optionsToolStripMenuItem.Size = new Size(61, 20);
             optionsToolStripMenuItem.Text = "Options";
             // 
+            // airportToolStripMenuItem
+            // 
+            airportToolStripMenuItem.Name = "airportToolStripMenuItem";
+            airportToolStripMenuItem.Size = new Size(180, 22);
+            airportToolStripMenuItem.Text = "Airport...";
+            airportToolStripMenuItem.Click += airportToolStripMenuItem_Click;
+            // 
             // settingsToolStripMenuItem
             // 
             settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            settingsToolStripMenuItem.Size = new Size(125, 22);
+            settingsToolStripMenuItem.Size = new Size(180, 22);
             settingsToolStripMenuItem.Text = "Settings...";
             settingsToolStripMenuItem.Click += settingsToolStripMenuItem_Click;
             // 
@@ -429,13 +346,51 @@
             timeRemainingTxt.Size = new Size(22, 17);
             timeRemainingTxt.Text = "---";
             // 
+            // runwayTableLayoutPanel
+            // 
+            runwayTableLayoutPanel.AutoSize = true;
+            runwayTableLayoutPanel.ColumnCount = 2;
+            runwayTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            runwayTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            runwayTableLayoutPanel.Location = new Point(458, 42);
+            runwayTableLayoutPanel.Name = "runwayTableLayoutPanel";
+            runwayTableLayoutPanel.RowCount = 2;
+            runwayTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            runwayTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            runwayTableLayoutPanel.Size = new Size(253, 59);
+            runwayTableLayoutPanel.TabIndex = 32;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(458, 24);
+            label1.Name = "label1";
+            label1.Size = new Size(86, 15);
+            label1.TabIndex = 33;
+            label1.Text = "Select Runway:";
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Text = "About...";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
+            Controls.Add(runwayTableLayoutPanel);
             Controls.Add(statusStrip1);
-            Controls.Add(runwayGroupBox);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(fetchedLocalTxt);
@@ -453,14 +408,12 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
-            Text = "Form1";
+            Text = "vMet";
             Paint += Form1_Paint;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            runwayGroupBox.ResumeLayout(false);
-            runwayGroupBox.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
@@ -496,13 +449,6 @@
         private TextBox fetchedLocalTxt;
         private Panel panel1;
         private Panel panel2;
-        private GroupBox runwayGroupBox;
-        private RadioButton rb28;
-        private RadioButton rb24;
-        private RadioButton rb19;
-        private RadioButton rb10;
-        private RadioButton rb06;
-        private RadioButton rb01;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem optionsToolStripMenuItem;
         private ToolStripMenuItem settingsToolStripMenuItem;
@@ -510,5 +456,10 @@
         private ToolStripStatusLabel statusTxt;
         private ToolStripProgressBar progBar;
         private ToolStripStatusLabel timeRemainingTxt;
+        private ToolStripMenuItem airportToolStripMenuItem;
+        private TableLayoutPanel runwayTableLayoutPanel;
+        private Label label1;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }

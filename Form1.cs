@@ -1,6 +1,10 @@
+using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text.Json;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace vMet
@@ -13,21 +17,24 @@ namespace vMet
 
         public WeatherData? Weather { get; private set; }
         public int SelectedRunway { get; private set; } = -1;
+        private List<Airport> Airports { get; }
+        private Airport airport;
 
         private int elapsedSeconds = 0;
-        private int refreshSeconds = 600;
+        private int refreshSeconds = 300;
 
-        public Form1()
+        public Form1(List<Airport> airports)
         {
             InitializeComponent();
             startTimer();
-            fetchData();
             timer1.Interval = 1000; // 1 second
+            Airports = airports;
             //timer1.Start();
         }
 
         private void startTimer()
         {
+            fetchData();
             elapsedSeconds = 0;
             timer1.Start();
             statusTxt.Text = "Running";
@@ -46,7 +53,7 @@ namespace vMet
         private async void timer1_Tick(object sender, EventArgs e)
         {
             elapsedSeconds++;
-            
+
             progBar.Value = elapsedSeconds;
             progBar.Maximum = refreshSeconds;
 
@@ -67,14 +74,20 @@ namespace vMet
             try
             {
                 string apiKey = ConfigurationManager.AppSettings["OpenWeatherMapApiKey"];
-                
-                if (apiKey.Equals("")) 
+
+                if (string.IsNullOrEmpty(apiKey))
                 {
                     stopTimer();
-                    return; 
+                    return;
                 }
 
-                string url = "https://api.openweathermap.org/data/2.5/weather?lat=53.7929&lon=-1.2241&appid=" + apiKey;
+                if (airport is null)
+                {
+                    stopTimer();
+                    return;
+                }
+
+                string url = "https://api.openweathermap.org/data/2.5/weather?lat=" + airport.Latitude + "&lon=" + airport.Longitude + "&appid=" + apiKey;
                 HttpResponseMessage response = await httpClient.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
@@ -141,42 +154,53 @@ namespace vMet
             gustTxt.Text = data.WindGustKnots.ToString();
             tempTxt.Text = data.TemperatureCelsius.ToString();
             qnhTxt.Text = data.Main.Sea_Level.ToString();
-            qfeTxt.Text = (data.Main.Sea_Level - 1).ToString();
+            qfeTxt.Text = Math.Round(CalculateQFE(data.Main.Sea_Level, airport.Elevation)).ToString();
             visibilityTxt.Text = data.Visibility.ToString();
             sunriseLocalTxt.Text = data.Sunrise.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss") + " local";
             sunsetLocalTxt.Text = data.Sunset.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss") + " local";
 
-            int r01hw = GetHeadWind(01, data.WindDirDegs, data.WindSpeedKnots);
-            int r06hw = GetHeadWind(06, data.WindDirDegs, data.WindSpeedKnots);
-            int r10hw = GetHeadWind(10, data.WindDirDegs, data.WindSpeedKnots);
-            int r19hw = GetHeadWind(19, data.WindDirDegs, data.WindSpeedKnots);
-            int r24hw = GetHeadWind(24, data.WindDirDegs, data.WindSpeedKnots);
-            int r28hw = GetHeadWind(28, data.WindDirDegs, data.WindSpeedKnots);
+            int maxHeadwind = 0;
+            foreach (Control control in runwayTableLayoutPanel.Controls)
+            {
+                if (control is RadioButton radioButton)
+                {
+                    string rw = radioButton.Text.Substring(0, 2);
+                    int rwNum;
+                    if (int.TryParse(rw, out rwNum))
+                    {
+                        int hw = GetHeadWind(rwNum, data.WindDirDegs, data.WindSpeedKnots);
+                        if (hw > maxHeadwind)
+                        {
+                            maxHeadwind = hw;
+                        }
 
-            int maxHeadWind = Math.Max(r01hw, Math.Max(r06hw, Math.Max(r10hw, Math.Max(r19hw, Math.Max(r24hw, r28hw)))));
+                        int cw = GetCrossWind(rwNum, data.WindDirDegs, data.WindSpeedKnots);
 
-            int r01cw = GetCrossWind(01, data.WindDirDegs, data.WindSpeedKnots);
-            int r06cw = GetCrossWind(06, data.WindDirDegs, data.WindSpeedKnots);
-            int r10cw = GetCrossWind(10, data.WindDirDegs, data.WindSpeedKnots);
-            int r19cw = GetCrossWind(19, data.WindDirDegs, data.WindSpeedKnots);
-            int r24cw = GetCrossWind(24, data.WindDirDegs, data.WindSpeedKnots);
-            int r28cw = GetCrossWind(28, data.WindDirDegs, data.WindSpeedKnots);
+                        // Update the text of the radio button
+                        radioButton.AutoSize = true;
+                        radioButton.Text = rw + " (H:" + hw + " C:" + cw + ")";
+                    }
+                }
+            }
 
-
-            rb01.Text = "01 (H:" + r01hw + " C:" + r01cw + ")";
-            rb06.Text = "06 (H:" + r06hw + " C:" + r06cw + ")";
-            rb10.Text = "10 (H:" + r10hw + " C:" + r10cw + ")";
-            rb19.Text = "19 (H:" + r19hw + " C:" + r19cw + ")";
-            rb24.Text = "24 (H:" + r24hw + " C:" + r24cw + ")";
-            rb28.Text = "28 (H:" + r28hw + " C:" + r28cw + ")";
-
-            HighlightRadioButton(rb01, r01hw, maxHeadWind);
-            HighlightRadioButton(rb06, r06hw, maxHeadWind);
-            HighlightRadioButton(rb10, r10hw, maxHeadWind);
-            HighlightRadioButton(rb19, r19hw, maxHeadWind);
-            HighlightRadioButton(rb24, r24hw, maxHeadWind);
-            HighlightRadioButton(rb28, r28hw, maxHeadWind);
-
+            // Now we know all the runway wind components, we can highlight the maximum
+            foreach (Control control in runwayTableLayoutPanel.Controls)
+            {
+                if (control is RadioButton radioButton)
+                {
+                    string pattern = @"H:(-?\d+)";
+                    Match match = Regex.Match(radioButton.Text, pattern);
+                    if (match.Success)
+                    {
+                        string hw = match.Groups[1].Value;
+                        int hwNum;
+                        if (int.TryParse(hw, out hwNum))
+                        {
+                            HighlightRadioButton(radioButton, hwNum, maxHeadwind);
+                        }
+                    }
+                }
+            }
             this.Invalidate();
             // Update your form fields based on the data
             // Example:
@@ -373,7 +397,9 @@ namespace vMet
                 if (radioButton.Checked)
                 {
                     // Extract the numeric part from the radio button's name "rb01"
-                    string numericPart = radioButton.Name.Substring(2); // Skip the "rb" prefix
+                    //string numericPart = radioButton.Name.Substring(2); // Skip the "rb" prefix
+
+                    string numericPart = radioButton.Text.Substring(0, 2);
                     if (int.TryParse(numericPart, out int selectedNumber))
                     {
                         SelectedRunway = selectedNumber;
@@ -394,7 +420,131 @@ namespace vMet
             startTimer();
             fetchData();
         }
+
+        private void airportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AirportDialog airportDialog = new AirportDialog(Airports, airport);
+
+            string oldIcao = "";
+            if (airport != null)
+            {
+                oldIcao = airport.Icao;
+            }
+
+            if (airportDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                foreach (Airport ap in Airports)
+                {
+                    if (ap.Icao == airportDialog.Icao)
+                    {
+                        airport = ap;
+                    }
+
+                }
+            }
+            if (oldIcao != airport.Icao)
+            {
+                Text = "vMet: " + airport.FullIcaoName;
+                startTimer();
+                runwayTableLayoutPanel.Controls.Clear();
+
+                foreach (RunwayPair rwPair in airport.RunwayPairs)
+                {
+                    var radioButton1 = new RadioButton
+                    {
+                        Text = rwPair.Runways[0].Name,
+                        AutoSize = true
+                    };
+                    var radioButton2 = new RadioButton
+                    {
+                        Text = rwPair.Runways[1].Name,
+                        AutoSize = true
+                    };
+
+                    // Add listener
+                    radioButton1.CheckedChanged += new EventHandler(RunwayRadioButton_CheckedChanged);
+                    radioButton2.CheckedChanged += new EventHandler(RunwayRadioButton_CheckedChanged);
+
+                    // Add the RadioButtons to the TableLayoutPanel
+                    runwayTableLayoutPanel.Controls.Add(radioButton1);
+                    runwayTableLayoutPanel.Controls.Add(radioButton2);
+                }
+            }
+        }
+
+        public static double CalculateQFE(double qnh, double elevationFeet)
+        {
+            // Constants
+            const double standardTemperatureLapseRate = -0.0065;
+            const double tempSeaLevel = 288.15;
+            const double gasConstant = 287.05287;
+            const double g = 9.90665;
+
+            // Convert elevation to meters
+            double elevationInMeters = elevationFeet * 12 * 2.54 / 100;
+
+            // Calculate the power term
+            double powerTerm = (-1 * g) / (standardTemperatureLapseRate * gasConstant);
+
+            // Calculate the inner term
+            double innerTerm = 1 + (standardTemperatureLapseRate * elevationInMeters / tempSeaLevel);
+
+            // Calculate qfe
+            double qfe = qnh * Math.Pow(innerTerm, powerTerm);
+
+            return qfe;
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowAboutDialog();
+        }
+
+        private void ShowAboutDialog()
+        {
+            string programName = "vMet";
+            string version = "v1.0.0";
+            string url = "https://github.com/PaulWalkerUK/vMet";
+
+            Form aboutForm = new Form();
+            aboutForm.Text = "About";
+            aboutForm.Size = new System.Drawing.Size(300, 200);
+            aboutForm.StartPosition = FormStartPosition.CenterParent;
+
+            Label nameLabel = new Label();
+            nameLabel.Text = programName;
+            nameLabel.Location = new System.Drawing.Point(10, 20);
+            nameLabel.AutoSize = true;
+
+            Label versionLabel = new Label();
+            versionLabel.Text = version;
+            versionLabel.Location = new System.Drawing.Point(10, 50);
+            versionLabel.AutoSize = true;
+
+            LinkLabel urlLabel = new LinkLabel();
+            urlLabel.Text = url;
+            urlLabel.Location = new System.Drawing.Point(10, 80);
+            urlLabel.AutoSize = true;
+            urlLabel.LinkClicked += (sender, e) =>
+            {
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            };
+
+            Button okButton = new Button();
+            okButton.Text = "OK";
+            okButton.Location = new System.Drawing.Point(100, 120);
+            okButton.Click += (sender, e) => { aboutForm.Close(); };
+
+            aboutForm.Controls.Add(nameLabel);
+            aboutForm.Controls.Add(versionLabel);
+            aboutForm.Controls.Add(urlLabel);
+            aboutForm.Controls.Add(okButton);
+
+            aboutForm.ShowDialog();
+        }
     }
+
+
 
     // Define your data model class to deserialize JSON
     public class WeatherData
