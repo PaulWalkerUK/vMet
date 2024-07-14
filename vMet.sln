@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vMet", "vMet.csproj", "{670AD480-0E08-4A9C-9C64-9C447E3EF692}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vMet", "vMet\vMet.csproj", "{670AD480-0E08-4A9C-9C64-9C447E3EF692}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "vMet_Installer", "vMet_Installer\vMet_Installer.vdproj", "{35A54EDC-1247-4F79-A42F-B1146CBB7EC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{670AD480-0E08-4A9C-9C64-9C447E3EF692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{670AD480-0E08-4A9C-9C64-9C447E3EF692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{670AD480-0E08-4A9C-9C64-9C447E3EF692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A54EDC-1247-4F79-A42F-B1146CBB7EC9}.Debug|Any CPU.ActiveCfg = Debug
+		{35A54EDC-1247-4F79-A42F-B1146CBB7EC9}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
