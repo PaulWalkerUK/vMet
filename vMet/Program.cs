@@ -16,7 +16,7 @@ namespace vMet
                 new RunwayPair(new Runway("10", 100), new Runway("28", 280))
             ]));
 
-            airports.Add(new Airport("EGEC", "Campbeltown", 54.43647, -5.68085, 42,
+            airports.Add(new Airport("EGEC", "Campbeltown", 55.43647, -5.68085, 42,
             [
                 new RunwayPair(new Runway("11", 50), new Runway("29", 230))
             ]));

@@ -502,7 +502,7 @@ namespace vMet
         private void ShowAboutDialog()
         {
             string programName = "vMet";
-            string version = "v1.0.1";
+            string version = "v1.0.2";
             string url = "https://github.com/PaulWalkerUK/vMet";
 
             Form aboutForm = new Form();
