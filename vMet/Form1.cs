@@ -1,5 +1,4 @@
 using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.Text.Json;
@@ -73,7 +72,7 @@ namespace vMet
         {
             try
             {
-                string apiKey = ConfigurationManager.AppSettings["OpenWeatherMapApiKey"];
+                string apiKey = Properties.Settings.Default.OpenWeatherMapApiKey;
 
                 if (string.IsNullOrEmpty(apiKey))
                 {
@@ -503,7 +502,7 @@ namespace vMet
         private void ShowAboutDialog()
         {
             string programName = "vMet";
-            string version = "v1.0.0";
+            string version = "v1.0.1";
             string url = "https://github.com/PaulWalkerUK/vMet";
 
             Form aboutForm = new Form();

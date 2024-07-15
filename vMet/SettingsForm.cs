@@ -16,7 +16,7 @@ namespace vMet
         public SettingsForm()
         {
             InitializeComponent();
-            apikeyTxt.Text = ConfigurationManager.AppSettings["OpenWeatherMapApiKey"];
+            apikeyTxt.Text = Properties.Settings.Default.OpenWeatherMapApiKey;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -31,10 +31,11 @@ namespace vMet
         }
         private void SaveApiKey(string newApiKey)
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["OpenWeatherMapApiKey"].Value = newApiKey;
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            Properties.Settings.Default.OpenWeatherMapApiKey = newApiKey;
+            Properties.Settings.Default.Save();
+            //config.Save(ConfigurationSaveMode.Modified);
+            //ConfigurationManager.RefreshSection("appSettings");
         }
     }
 }
