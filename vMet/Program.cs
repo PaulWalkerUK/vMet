@@ -27,6 +27,11 @@ namespace vMet
                 new RunwayPair(new Runway("17", 170), new Runway("35", 350))
             ]));
 
+            airports.Add(new Airport("EGPG", "Cumbernauld", 55.974870046280664, -3.9742469617112173, 348,
+            [
+                new RunwayPair(new Runway("07", 70), new Runway("25", 250))
+            ]));
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
