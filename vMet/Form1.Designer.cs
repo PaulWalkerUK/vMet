@@ -58,14 +58,15 @@
             optionsToolStripMenuItem = new ToolStripMenuItem();
             airportToolStripMenuItem = new ToolStripMenuItem();
             settingsToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             statusTxt = new ToolStripStatusLabel();
             progBar = new ToolStripProgressBar();
             timeRemainingTxt = new ToolStripStatusLabel();
             runwayTableLayoutPanel = new TableLayoutPanel();
             label1 = new Label();
-            helpToolStripMenuItem = new ToolStripMenuItem();
-            aboutToolStripMenuItem = new ToolStripMenuItem();
+            alwaysOnTopToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -301,7 +302,7 @@
             // 
             // optionsToolStripMenuItem
             // 
-            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { airportToolStripMenuItem, settingsToolStripMenuItem });
+            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { airportToolStripMenuItem, settingsToolStripMenuItem, alwaysOnTopToolStripMenuItem });
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             optionsToolStripMenuItem.Size = new Size(61, 20);
             optionsToolStripMenuItem.Text = "Options";
@@ -319,6 +320,20 @@
             settingsToolStripMenuItem.Size = new Size(180, 22);
             settingsToolStripMenuItem.Text = "Settings...";
             settingsToolStripMenuItem.Click += settingsToolStripMenuItem_Click;
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(116, 22);
+            aboutToolStripMenuItem.Text = "About...";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // statusStrip1
             // 
@@ -369,19 +384,13 @@
             label1.TabIndex = 33;
             label1.Text = "Select Runway:";
             // 
-            // helpToolStripMenuItem
+            // alwaysOnTopToolStripMenuItem
             // 
-            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
-            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(44, 20);
-            helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
-            aboutToolStripMenuItem.Text = "About...";
-            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+            alwaysOnTopToolStripMenuItem.CheckOnClick = true;
+            alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
+            alwaysOnTopToolStripMenuItem.Size = new Size(180, 22);
+            alwaysOnTopToolStripMenuItem.Text = "Always on top";
+            alwaysOnTopToolStripMenuItem.Click += alwaysOnTopToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -461,5 +470,6 @@
         private Label label1;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem alwaysOnTopToolStripMenuItem;
     }
 }

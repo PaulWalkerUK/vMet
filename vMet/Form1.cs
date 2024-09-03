@@ -502,7 +502,7 @@ namespace vMet
         private void ShowAboutDialog()
         {
             string programName = "vMet";
-            string version = "v1.1.0";
+            string version = "v1.2.0";
             string url = "https://github.com/PaulWalkerUK/vMet";
 
             Form aboutForm = new Form();
@@ -540,6 +540,11 @@ namespace vMet
             aboutForm.Controls.Add(okButton);
 
             aboutForm.ShowDialog();
+        }
+
+        private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.TopMost = alwaysOnTopToolStripMenuItem.Checked;
         }
     }
 

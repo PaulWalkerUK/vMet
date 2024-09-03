@@ -44,6 +44,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -164,15 +172,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:vMet"
-        "ProductCode" = "8:{11BCC766-D35A-4BD2-9161-3C0647B7CABF}"
-        "PackageCode" = "8:{AD3476CC-A606-4BDD-9BFE-F94E2F3C3060}"
+        "ProductCode" = "8:{02A61DC5-237A-4C63-98A2-9861869204A2}"
+        "PackageCode" = "8:{40128151-39CF-4098-B96C-1A5FC6C9FB40}"
         "UpgradeCode" = "8:{A84FD875-9BDA-412A-B0B7-27E11D1F02AD}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:PaulWalkerUK"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/PaulWalkerUK/vMet"
