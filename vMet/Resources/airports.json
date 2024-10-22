@@ -133,5 +133,34 @@
         }
       ]
     ]
+  },
+  {
+    "Icao": "EGHJ",
+    "Name": "Bembridge",
+    "Latitude": 50.678,
+    "Longitude": -1.1095,
+    "Elevation": 53,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "05",
+          "Heading": 50
+        },
+        {
+          "Name": "23",
+          "Heading": 230
+        }
+      ],
+      [
+        {
+          "Name": "12",
+          "Heading": 120
+        },
+        {
+          "Name": "30",
+          "Heading": 300
+        }
+      ]
+    ]
   }
 ]
