@@ -8,12 +8,7 @@ namespace vMet
 {
     public class Runway
     {
-        public Runway(string name, int heading) { 
-            this.Name = name;
-            this.Heading = heading;
-        }
-
-        public string Name { get; }
-        public int Heading { get; }
+        public string Name { get; set; }
+        public int Heading { get; set; }
     }
 }

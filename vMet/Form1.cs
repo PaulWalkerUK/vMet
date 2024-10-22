@@ -447,26 +447,29 @@ namespace vMet
                 startTimer();
                 runwayTableLayoutPanel.Controls.Clear();
 
-                foreach (RunwayPair rwPair in airport.RunwayPairs)
+                foreach (var runwayPair in airport.RunwayPairs)
                 {
-                    var radioButton1 = new RadioButton
+                    if (runwayPair.Count == 2)
                     {
-                        Text = rwPair.Runways[0].Name,
-                        AutoSize = true
-                    };
-                    var radioButton2 = new RadioButton
-                    {
-                        Text = rwPair.Runways[1].Name,
-                        AutoSize = true
-                    };
+                        var radioButton1 = new RadioButton
+                        {
+                            Text = runwayPair[0].Name,
+                            AutoSize = true
+                        };
+                        var radioButton2 = new RadioButton
+                        {
+                            Text = runwayPair[1].Name,
+                            AutoSize = true
+                        };
 
-                    // Add listener
-                    radioButton1.CheckedChanged += new EventHandler(RunwayRadioButton_CheckedChanged);
-                    radioButton2.CheckedChanged += new EventHandler(RunwayRadioButton_CheckedChanged);
+                        // Add listener
+                        radioButton1.CheckedChanged += new EventHandler(RunwayRadioButton_CheckedChanged);
+                        radioButton2.CheckedChanged += new EventHandler(RunwayRadioButton_CheckedChanged);
 
-                    // Add the RadioButtons to the TableLayoutPanel
-                    runwayTableLayoutPanel.Controls.Add(radioButton1);
-                    runwayTableLayoutPanel.Controls.Add(radioButton2);
+                        // Add the RadioButtons to the TableLayoutPanel
+                        runwayTableLayoutPanel.Controls.Add(radioButton1);
+                        runwayTableLayoutPanel.Controls.Add(radioButton2);
+                    }
                 }
             }
         }

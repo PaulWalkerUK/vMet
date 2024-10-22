@@ -1,0 +1,137 @@
+[
+  {
+    "Icao": "EGCJ",
+    "Name": "Sherburn-in-Elmet",
+    "Latitude": 53.7929,
+    "Longitude": -1.2241,
+    "Elevation": 26,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "01",
+          "Heading": 10
+        },
+        {
+          "Name": "19",
+          "Heading": 190
+        }
+      ],
+      [
+        {
+          "Name": "06",
+          "Heading": 60
+        },
+        {
+          "Name": "24",
+          "Heading": 240
+        }
+      ],
+      [
+        {
+          "Name": "10",
+          "Heading": 100
+        },
+        {
+          "Name": "28",
+          "Heading": 280
+        }
+      ]
+    ]
+  },
+  {
+    "Icao": "EGEC",
+    "Name": "Campbeltown",
+    "Latitude": 55.43647,
+    "Longitude": -5.68085,
+    "Elevation": 42,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "11",
+          "Heading": 110
+        },
+        {
+          "Name": "29",
+          "Heading": 290
+        }
+      ]
+    ]
+  },
+  {
+    "Icao": "EGNL",
+    "Name": "Walney Island",
+    "Latitude": 54.1167,
+    "Longitude": -3.25,
+    "Elevation": 44,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "05",
+          "Heading": 50
+        },
+        {
+          "Name": "23",
+          "Heading": 230
+        }
+      ],
+      [
+        {
+          "Name": "17",
+          "Heading": 170
+        },
+        {
+          "Name": "35",
+          "Heading": 350
+        }
+      ]
+    ]
+  },
+  {
+    "Icao": "EGPG",
+    "Name": "Cumbernauld",
+    "Latitude": 55.974870046280664,
+    "Longitude": -3.9742469617112173,
+    "Elevation": 348,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "07",
+          "Heading": 70
+        },
+        {
+          "Name": "25",
+          "Heading": 250
+        }
+      ]
+    ]
+  },
+  {
+    "Icao": "EGCV",
+    "Name": "Sleap",
+    "Latitude": 52.833889,
+    "Longitude": -2.771667,
+    "Elevation": 275,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "05",
+          "Heading": 50
+        },
+        {
+          "Name": "23",
+          "Heading": 230
+        }
+      ],
+      [
+        {
+          "Name": "18",
+          "Heading": 180
+        },
+        {
+          "Name": "36",
+          "Heading": 360
+        }
+      ]
+    ]
+  }
+]

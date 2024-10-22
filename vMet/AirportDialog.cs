@@ -21,7 +21,7 @@ namespace vMet
 
             if (currentAirport ==null)
             {
-                Airport blankAirport = new Airport("","", 0, 0, 0, null);
+                Airport blankAirport = new Airport();
                 listAirports.Add(blankAirport);
             }
             listAirports.AddRange(airports);
