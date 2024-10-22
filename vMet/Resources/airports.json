@@ -39,6 +39,35 @@
     ]
   },
   {
+    "Icao": "EGCV",
+    "Name": "Sleap",
+    "Latitude": 52.833889,
+    "Longitude": -2.771667,
+    "Elevation": 275,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "05",
+          "Heading": 50
+        },
+        {
+          "Name": "23",
+          "Heading": 230
+        }
+      ],
+      [
+        {
+          "Name": "18",
+          "Heading": 180
+        },
+        {
+          "Name": "36",
+          "Heading": 360
+        }
+      ]
+    ]
+  },
+  {
     "Icao": "EGEC",
     "Name": "Campbeltown",
     "Latitude": 55.43647,
@@ -53,6 +82,35 @@
         {
           "Name": "29",
           "Heading": 290
+        }
+      ]
+    ]
+  },
+  {
+    "Icao": "EGHJ",
+    "Name": "Bembridge",
+    "Latitude": 50.678,
+    "Longitude": -1.1095,
+    "Elevation": 53,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "05",
+          "Heading": 50
+        },
+        {
+          "Name": "23",
+          "Heading": 230
+        }
+      ],
+      [
+        {
+          "Name": "12",
+          "Heading": 120
+        },
+        {
+          "Name": "30",
+          "Heading": 300
         }
       ]
     ]
@@ -101,64 +159,6 @@
         {
           "Name": "25",
           "Heading": 250
-        }
-      ]
-    ]
-  },
-  {
-    "Icao": "EGCV",
-    "Name": "Sleap",
-    "Latitude": 52.833889,
-    "Longitude": -2.771667,
-    "Elevation": 275,
-    "RunwayPairs": [
-      [
-        {
-          "Name": "05",
-          "Heading": 50
-        },
-        {
-          "Name": "23",
-          "Heading": 230
-        }
-      ],
-      [
-        {
-          "Name": "18",
-          "Heading": 180
-        },
-        {
-          "Name": "36",
-          "Heading": 360
-        }
-      ]
-    ]
-  },
-  {
-    "Icao": "EGHJ",
-    "Name": "Bembridge",
-    "Latitude": 50.678,
-    "Longitude": -1.1095,
-    "Elevation": 53,
-    "RunwayPairs": [
-      [
-        {
-          "Name": "05",
-          "Heading": 50
-        },
-        {
-          "Name": "23",
-          "Heading": 230
-        }
-      ],
-      [
-        {
-          "Name": "12",
-          "Heading": 120
-        },
-        {
-          "Name": "30",
-          "Heading": 300
         }
       ]
     ]
