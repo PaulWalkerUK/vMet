@@ -8,13 +8,6 @@ namespace vMet
 {
     public class RunwayPair
     {
-        private Runway[] runways = new Runway[2];
-
-        public Runway[] Runways { get { return runways; } }
-
-        public RunwayPair(Runway runwayA, Runway runwayB) {
-            runways[0] = runwayA;
-            runways[1] = runwayB;
-        }
+        public List<Runway> Runways { get; set; }
     }
 }

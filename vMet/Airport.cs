@@ -1,29 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace vMet
+﻿namespace vMet
 {
     public class Airport
     {
-        public Airport(string icao, string name, double latitude, double longitude, int elevation, List<RunwayPair> runwayPairs)
-        {
-            this.Icao = icao;
-            this.Name = name;
-            this.Latitude = latitude;
-            this.Longitude = longitude;
-            this.Elevation = elevation;
-            this.RunwayPairs = runwayPairs;
-        }
-
-        public string Icao { get; }
-        public string Name { get; }
-        public double Latitude { get; }
-        public double Longitude { get; }
-        public int Elevation { get; }
-        internal List<RunwayPair> RunwayPairs { get; }
+        public string Icao { get; set; }
+        public string Name { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public int Elevation { get; set; }
+        public List<List<Runway>> RunwayPairs { get; set; }
 
         public string FullIcaoName {
             get
@@ -50,7 +34,5 @@ namespace vMet
                 }
             }
         }
-
-        
     }
 }
