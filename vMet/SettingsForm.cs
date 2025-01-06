@@ -13,10 +13,13 @@ namespace vMet
 {
     public partial class SettingsForm : Form
     {
-        public SettingsForm()
+        private UserConfigMgr userConfigMgr;
+
+        public SettingsForm(UserConfigMgr userConfigMgr)
         {
+            this.userConfigMgr = userConfigMgr;
             InitializeComponent();
-            apikeyTxt.Text = Properties.Settings.Default.OpenWeatherMapApiKey;
+            apikeyTxt.Text = userConfigMgr.config.openWeatherApiKey;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -31,11 +34,8 @@ namespace vMet
         }
         private void SaveApiKey(string newApiKey)
         {
-            //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            Properties.Settings.Default.OpenWeatherMapApiKey = newApiKey;
-            Properties.Settings.Default.Save();
-            //config.Save(ConfigurationSaveMode.Modified);
-            //ConfigurationManager.RefreshSection("appSettings");
+            userConfigMgr.config.openWeatherApiKey = newApiKey;
+            userConfigMgr.saveConfig();
         }
     }
 }
