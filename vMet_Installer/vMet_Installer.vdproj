@@ -172,15 +172,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:vMet"
-        "ProductCode" = "8:{925D6F0C-5B17-477D-8A20-0F36F0762A84}"
-        "PackageCode" = "8:{CB1B33C4-BF7C-4F01-BC95-6356C645E52C}"
+        "ProductCode" = "8:{BE00ADAA-5DDE-4C22-B323-E7021BC2BA0A}"
+        "PackageCode" = "8:{097D23F0-C0F8-42EE-AB2B-43B8947B9A47}"
         "UpgradeCode" = "8:{A84FD875-9BDA-412A-B0B7-27E11D1F02AD}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.3.0"
+        "ProductVersion" = "8:1.4.0"
         "Manufacturer" = "8:PaulWalkerUK"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/PaulWalkerUK/vMet"
@@ -708,7 +708,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BE63D3E963B0424B91191F880F63F6EF"
             {
-            "SourcePath" = "8:..\\vMet\\obj\\Debug\\net8.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\vMet\\obj\\Release\\net8.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_09FBB6C9362846F6A51D2A5461378127"

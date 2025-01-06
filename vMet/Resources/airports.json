@@ -1,5 +1,64 @@
 [
   {
+    "Icao": "EGBG",
+    "Name": "Leicester",
+    "Latitude": 52.607778,
+    "Longitude": -1.031944,
+    "Elevation": 469,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "04",
+          "Heading": 40
+        },
+        {
+          "Name": "22",
+          "Heading": 220
+        }
+      ],
+      [
+        {
+          "Name": "06(g)",
+          "Heading": 60
+        },
+        {
+          "Name": "24(g)",
+          "Heading": 240
+        }
+      ],
+      [
+        {
+          "Name": "10*",
+          "Heading": 100
+        },
+        {
+          "Name": "28*",
+          "Heading": 280
+        }
+      ],
+      [
+        {
+          "Name": "15",
+          "Heading": 150
+        },
+        {
+          "Name": "33",
+          "Heading": 330
+        }
+      ],
+      [
+        {
+          "Name": "16g",
+          "Heading": 160
+        },
+        {
+          "Name": "34g",
+          "Heading": 340
+        }
+      ]
+    ]
+  },
+  {
     "Icao": "EGCJ",
     "Name": "Sherburn-in-Elmet",
     "Latitude": 53.7929,
@@ -159,6 +218,45 @@
         {
           "Name": "25",
           "Heading": 250
+        }
+      ]
+    ]
+  },
+  {
+    "Icao": "EGPT",
+    "Name": "Perth",
+    "Latitude": 56.43946014425623,
+    "Longitude": -3.3717288557714378,
+    "Elevation": 395,
+    "RunwayPairs": [
+      [
+        {
+          "Name": "03",
+          "Heading": 30
+        },
+        {
+          "Name": "21",
+          "Heading": 210
+        }
+      ],
+      [
+        {
+          "Name": "09",
+          "Heading": 90
+        },
+        {
+          "Name": "27",
+          "Heading": 270
+        }
+      ],
+      [
+        {
+          "Name": "15(g)",
+          "Heading": 150
+        },
+        {
+          "Name": "33(g)",
+          "Heading": 330
         }
       ]
     ]

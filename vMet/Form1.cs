@@ -16,14 +16,18 @@ namespace vMet
 
         public WeatherData? Weather { get; private set; }
         public int SelectedRunway { get; private set; } = -1;
+
+        private readonly UserConfigMgr userConfigMgr;
+
         private List<Airport> Airports { get; }
         private Airport airport;
 
         private int elapsedSeconds = 0;
         private int refreshSeconds = 300;
 
-        public Form1(List<Airport> airports)
+        public Form1(UserConfigMgr userConfigMgr, List<Airport> airports)
         {
+            this.userConfigMgr = userConfigMgr;
             InitializeComponent();
             startTimer();
             timer1.Interval = 1000; // 1 second
@@ -72,7 +76,7 @@ namespace vMet
         {
             try
             {
-                string apiKey = Properties.Settings.Default.OpenWeatherMapApiKey;
+                string apiKey = userConfigMgr.config.openWeatherApiKey;
 
                 if (string.IsNullOrEmpty(apiKey))
                 {
@@ -414,7 +418,7 @@ namespace vMet
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SettingsForm form = new SettingsForm();
+            SettingsForm form = new SettingsForm(userConfigMgr);
             form.ShowDialog();
             startTimer();
             fetchData();
@@ -505,7 +509,7 @@ namespace vMet
         private void ShowAboutDialog()
         {
             string programName = "vMet";
-            string version = "v1.3.0";
+            string version = "v1.4.0";
             string url = "https://github.com/PaulWalkerUK/vMet";
 
             Form aboutForm = new Form();
